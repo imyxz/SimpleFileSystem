@@ -15,6 +15,11 @@ public:
 	File(INodeStruct * inode_struct) :INode(inode_struct) {
 
 	}
+	File(INode & inode) :INode(inode) {
+		if (inode.GetINode()->type != INodeType::kFILE) {
+			throw new exception("this inode is not type file.");
+		}
+	}
 	ifstream & getIfStream() {
 		return ContentLoader::GetContentIfStream(inode->content_id);
 	}

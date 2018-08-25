@@ -33,5 +33,5 @@ ID_T UsedMap::findEmptySlot() const {
 }
 UsedMap::~UsedMap() {
 	this->saveToFile();
-	delete map_array;
+	delete [] map_array;
 }

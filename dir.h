@@ -16,6 +16,11 @@ public:
 	Dir(INodeStruct * inode_struct) :INode(inode_struct) {
 
 	}
+	Dir(INode & inode) :INode(inode) {
+		if (inode.GetINode()->type != INodeType::kDIR) {
+			throw new exception("this inode is not type dir.");
+		}
+	}
 /**	Dir & operator =(INode& inode) {
 		if (inode.GetType() != INodeType::kDIR) {
 			throw new exception("Only can conver a dir type INode to Dir");
@@ -83,7 +88,7 @@ public:
 				return entry.inode_id;
 			}
 		}
-		return -1;
+		return 0;
 	}
 	void deleteEntry(INode & inode_entry) {
 		ifstream & in = ContentLoader::GetContentIfStream(inode->content_id);

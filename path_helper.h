@@ -6,5 +6,5 @@
 using namespace std;
 class PathHelper {
 public:
-	static INode * GetINodeFromPath(const Dir & curDir, const string & path);
+	static INode * GetINodeFromPath(const Dir & curDir, const string & path,const bool mkdir_mode);
 };

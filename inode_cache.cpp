@@ -26,5 +26,5 @@ INodeCache::~INodeCache() {
 			delete inodes[i];
 		}
 	}
-	delete inodes;
+	delete [] inodes;
 }
