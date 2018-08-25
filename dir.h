@@ -9,16 +9,23 @@
 class Dir :public INode {
 public:
 	Dir(const ID_T & inode_id) :INode(inode_id) {
-		if (inode.type != INodeType::kDIR) {
+		if (inode->type != INodeType::kDIR) {
 			throw new exception("this inode is not type dir.");
 		}
 	}
-	Dir(INodeStruct inode_struct) :INode(inode_struct) {
+	Dir(INodeStruct * inode_struct) :INode(inode_struct) {
 
 	}
+/**	Dir & operator =(INode& inode) {
+		if (inode.GetType() != INodeType::kDIR) {
+			throw new exception("Only can conver a dir type INode to Dir");
+		}
+		INodeStruct & inode_struct = inode.GetINode();
+		return Dir(inode_struct);
+	}**/
 	vector<DirectoryEntry> getEntries() const {
 		vector<DirectoryEntry> ret;
-		ifstream & in = ContentLoader::GetContentIfStream(inode.content_id);
+		ifstream & in = ContentLoader::GetContentIfStream(inode->content_id);
 		in.seekg(0, in.end);
 		auto length = in.tellg();
 		in.seekg(0, in.beg);
@@ -36,7 +43,7 @@ public:
 	void addEntry(INode & inode_entry, const string & name) {
 		//find deleted entry
 		int add_position = -1;
-		ifstream & in = ContentLoader::GetContentIfStream(inode.content_id);
+		ifstream & in = ContentLoader::GetContentIfStream(inode->content_id);
 		in.seekg(0, in.end);
 		auto length = in.tellg();
 		in.seekg(0, in.beg);
@@ -53,7 +60,7 @@ public:
 			add_position = length;
 		}
 		in.close();
-		ofstream & out = ContentLoader::GetContentOfStream(inode.content_id);
+		ofstream & out = ContentLoader::GetContentOfStream(inode->content_id);
 		DirectoryEntry directory_entry;
 		directory_entry.inode_id = inode_entry.GetID();
 		directory_entry.is_used = true;
@@ -79,7 +86,7 @@ public:
 		return -1;
 	}
 	void deleteEntry(INode & inode_entry) {
-		ifstream & in = ContentLoader::GetContentIfStream(inode.content_id);
+		ifstream & in = ContentLoader::GetContentIfStream(inode->content_id);
 		in.seekg(0, in.end);
 		auto length = in.tellg();
 		in.seekg(0, in.beg);

@@ -45,12 +45,36 @@
     <ClInclude Include="user_context.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="path_helper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="consts.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="inode_cache.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="源.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="inode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="inode_helper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="path_helper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="inode_loader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="inode_cache.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="used_map.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

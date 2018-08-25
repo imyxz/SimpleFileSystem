@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="consts.h" />
+    <ClInclude Include="inode_cache.h" />
+    <ClInclude Include="path_helper.h" />
     <ClInclude Include="user_context.h" />
     <ClInclude Include="dir.h" />
     <ClInclude Include="directory_entry.h" />
@@ -32,6 +35,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="inode.cpp" />
+    <ClCompile Include="inode_cache.cpp" />
+    <ClCompile Include="inode_helper.cpp" />
+    <ClCompile Include="inode_loader.cpp" />
+    <ClCompile Include="path_helper.cpp" />
+    <ClCompile Include="used_map.cpp" />
     <ClCompile Include="源.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

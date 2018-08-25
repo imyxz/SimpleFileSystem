@@ -1,7 +1,6 @@
 #pragma once
 #include "types.h"
 #include "inode_type.h"
-#include "directory_entry.h"
 #include<vector>
 #include<string>
 #include<cstring>
@@ -20,23 +19,27 @@ struct INodeStruct {
 };
 class INode {
 protected:
-	INodeStruct inode;
+	INodeStruct * inode;
 public:
 	INode(const ID_T & inode_id);
-	INode(const INodeStruct & inode) {
+	INode(INodeStruct * inode) {
 		this->inode = inode;
 	}
 	void save();
 	ID_T GetID() const {
-		return inode.id;
+		return inode->id;
+	}
+	INodeStruct * GetINode() {
+		return inode;
+	}
+	INodeType GetType() const{
+		return inode->type;
 	}
 	void onRefer() {
-		inode.ref_cnt++;
-		this->save();
+		inode->ref_cnt++;
 	}
 	void onUnrefer() {
-		inode.ref_cnt--;
-		this->save();
+		inode->ref_cnt--;
 	}
 };
 
