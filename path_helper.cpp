@@ -2,24 +2,22 @@
 #include "inode_helper.h"
 #include <string>
 using namespace std;
-INode * PathHelper::GetINodeFromPath(const Dir & curDir, const string & path) {
+INode * PathHelper::GetINodeFromPath(const Dir & curDir, const PathRoute & route) {
 
-	PathRoute pathroute;
-	GetPathRoute(path, pathroute);
 	Dir cur_dir = curDir;
-	if (path.substr(0, kPATH_DELIMITER.length()) == kPATH_DELIMITER) {
+	if (route.startFromRoot) {
 		cur_dir = INodeHelper::GetRootDir();
 	}
-	for (size_t i = 0; i + 1 < pathroute.size();i++) {
-		string & name = pathroute[i];
+	for (size_t i = 0; i + 1 < route.size();i++) {
+		const string & name = route[i];
 		ID_T sub_dir_id = cur_dir.findEntry(name);
 		if (sub_dir_id == 0) {
 			return NULL;
 		}
 		cur_dir = Dir(sub_dir_id);
 	}
-	if (pathroute.size() > 0) {
-		string last_file_name = pathroute.back();
+	if (route.size() > 0) {
+		string last_file_name = route.back();
 		ID_T ret_id = cur_dir.findEntry(last_file_name);
 		if (ret_id == 0) {
 			return NULL;
@@ -37,16 +35,14 @@ INode * PathHelper::GetINodeFromPath(const Dir & curDir, const string & path) {
 		return new Dir(cur_dir);
 	}
 }
-INode * PathHelper::MakeDir(const Dir & curDir, const string & path) {
+INode * PathHelper::MakeDir(const Dir & curDir, const PathRoute & route) {
 
-	PathRoute pathroute;
-	GetPathRoute(path, pathroute);
 	Dir cur_dir = curDir;
-	if (path.substr(0, kPATH_DELIMITER.length()) == kPATH_DELIMITER) {
+	if (route.startFromRoot) {
 		cur_dir = INodeHelper::GetRootDir();
 	}
-	for (size_t i = 0; i + 1 < pathroute.size(); i++) {
-		string & name = pathroute[i];
+	for (size_t i = 0; i + 1 < route.size(); i++) {
+		const string & name = route[i];
 		ID_T sub_dir_id = cur_dir.findEntry(name);
 		if (sub_dir_id == 0) {
 			Dir newDir = INodeHelper::CreateDir(cur_dir.GetID(), name);
@@ -54,8 +50,8 @@ INode * PathHelper::MakeDir(const Dir & curDir, const string & path) {
 		}
 		cur_dir = Dir(sub_dir_id);
 	}
-	if (pathroute.size() > 0) {
-		string last_file_name = pathroute.back();
+	if (route.size() > 0) {
+		string last_file_name = route.back();
 		ID_T ret_id = cur_dir.findEntry(last_file_name);
 		if (ret_id == 0) {
 			Dir newDir = INodeHelper::CreateDir(cur_dir.GetID(), last_file_name);
@@ -83,6 +79,10 @@ void PathHelper::GetPathRoute(const string & path, PathRoute & route)
 	size_t pos = string::npos;
 	if (path.substr(0, kPATH_DELIMITER.length()) == kPATH_DELIMITER) {
 		last_pos = kPATH_DELIMITER.length();
+		route.startFromRoot = true;
+	}
+	else {
+		route.startFromRoot = false;
 	}
 	while ((pos = path.find(kPATH_DELIMITER, last_pos)) != string::npos) {
 		if (pos == last_pos) {

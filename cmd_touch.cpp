@@ -5,21 +5,18 @@
 class CmdTouch :public IRunnable {
 public:
 	int run(int argc, string* argv) override {
-		if (argc >= 1) {
-			string filepath = argv[0];
-			Dir curDir = Dir(UserContext::cur_dir_id);
-			INode * inode = PathHelper::GetINodeFromPath(curDir, filepath);
-			if (inode == 0) {
-				cerr << filepath << "not exist!";
-				return -1;
-			}
-			else {
-				UserContext::cur_dir_id = inode->GetID();
-				return 0;
-			}
+		string filepath = argv[0];
+		Dir curDir = Dir(UserContext::cur_dir_id);
+		PathRoute route;
+		PathHelper::GetPathRoute(filepath, route);
+		INode * inode = PathHelper::GetINodeFromPath(curDir, route);
+		if (inode == 0) {
+			cerr << filepath << "not exist!";
+			return -1;
 		}
 		else {
-			return -1;
+			UserContext::cur_dir_id = inode->GetID();
+			return 0;
 		}
 	}
 };

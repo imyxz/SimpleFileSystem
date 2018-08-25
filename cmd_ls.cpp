@@ -9,7 +9,9 @@ public:
 		if (argc >= 1) {
 			string filepath = argv[0];
 			Dir curDir = Dir(UserContext::cur_dir_id);
-			inode = PathHelper::GetINodeFromPath(curDir,filepath);
+			PathRoute route;
+			PathHelper::GetPathRoute(filepath, route);
+			inode = PathHelper::GetINodeFromPath(curDir, route);
 			if (inode == 0) {
 				cerr << filepath << "not exist!";
 				return -1;
