@@ -8,7 +8,7 @@ public:
 		if (argc >= 1) {
 			string filepath = argv[0];
 			Dir curDir = Dir(UserContext::cur_dir_id);
-			INode * inode = PathHelper::GetINodeFromPath(curDir, filepath,true);
+			INode * inode = PathHelper::MakeDir(curDir, filepath);
 			if (inode == 0) {
 				cerr << "create dir faild!"<<endl;
 				return -1;

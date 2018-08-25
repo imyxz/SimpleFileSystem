@@ -70,12 +70,12 @@ public:
 		directory_entry.inode_id = inode_entry.GetID();
 		directory_entry.is_used = true;
 		const char * name_str = name.c_str();
-		for (int i = 0; i < DIRECTORY_ENTRY_NAME_LENGTH; i++) {
+		for (int i = 0; i < kDIRECTORY_ENTRY_NAME_LENGTH; i++) {
 			directory_entry.name[i] = name_str[i];
 			if (name_str[i] == '\0')
 				break;
 		}
-		directory_entry.name[DIRECTORY_ENTRY_NAME_LENGTH] = '\0';
+		directory_entry.name[kDIRECTORY_ENTRY_NAME_LENGTH] = '\0';
 		out.seekp(add_position);
 		out.write((char*)&directory_entry, sizeof(DirectoryEntry));
 		out.close();
@@ -86,6 +86,15 @@ public:
 		for (DirectoryEntry entry : entries) {
 			if (strcmp(name.c_str(), entry.name) == 0) {
 				return entry.inode_id;
+			}
+		}
+		return 0;
+	}
+	string findEntryName(const ID_T & entry_id) const {
+		vector<DirectoryEntry> entries = this->getEntries();
+		for (DirectoryEntry entry : entries) {
+			if (entry.inode_id == entry_id) {
+				return entry.name;
 			}
 		}
 		return 0;

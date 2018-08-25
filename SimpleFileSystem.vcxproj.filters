@@ -60,6 +60,9 @@
     <ClInclude Include="irunnable.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="path_trace.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="inode.cpp">
@@ -93,6 +96,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="cmd_cd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd_touch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="path_trace.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd_exit.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

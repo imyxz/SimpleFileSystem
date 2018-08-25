@@ -24,6 +24,7 @@
     <ClInclude Include="inode_cache.h" />
     <ClInclude Include="irunnable.h" />
     <ClInclude Include="path_helper.h" />
+    <ClInclude Include="path_trace.h" />
     <ClInclude Include="user_context.h" />
     <ClInclude Include="dir.h" />
     <ClInclude Include="directory_entry.h" />
@@ -37,13 +38,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cmd_cd.cpp" />
+    <ClCompile Include="cmd_exit.cpp" />
     <ClCompile Include="cmd_ls.cpp" />
     <ClCompile Include="cmd_mkdir.cpp" />
+    <ClCompile Include="cmd_touch.cpp" />
     <ClCompile Include="inode.cpp" />
     <ClCompile Include="inode_cache.cpp" />
     <ClCompile Include="inode_helper.cpp" />
     <ClCompile Include="inode_loader.cpp" />
     <ClCompile Include="path_helper.cpp" />
+    <ClCompile Include="path_trace.cpp" />
     <ClCompile Include="used_map.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="user_context.cpp" />

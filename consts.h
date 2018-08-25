@@ -9,3 +9,4 @@ const string kCONTENT_MAP_NAME = "content_map";
 const string kPATH_DELIMITER = "/";
 const string kINodeDir = "inode";
 const string kContentDir = "content";
+const SIZE_T kDIRECTORY_ENTRY_NAME_LENGTH = 251;

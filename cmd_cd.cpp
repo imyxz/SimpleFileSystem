@@ -8,13 +8,19 @@ public:
 		if (argc >= 1) {
 			string filepath = argv[0];
 			Dir curDir = Dir(UserContext::cur_dir_id);
-			INode * inode = PathHelper::GetINodeFromPath(curDir, filepath, false);
+			INode * inode = PathHelper::GetINodeFromPath(curDir, filepath);
 			if (inode == 0) {
 				cerr << filepath << "not exist!";
 				return -1;
 			}
 			else {
-				UserContext::cur_dir_id = inode->GetID();
+				string name = "";
+				PathRoute route;
+				PathHelper::GetPathRoute(filepath, route);
+				if (route.size() > 0) {
+					name = route.back();
+				}
+				UserContext::PushDir(Dir(*inode), name);
 				return 0;
 			}
 		}

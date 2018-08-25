@@ -2,6 +2,7 @@
 #include "cmd_ls.cpp"
 #include "cmd_mkdir.cpp"
 #include "cmd_cd.cpp"
+#include "cmd_exit.cpp"
 #include "arg_parser.h"
 #include "user_context.h"
 #include <iostream>
@@ -34,8 +35,13 @@ int main(int argc, char ** argv) {
 		(IRunnable*)&CmdCd(),
 		"改变当前工作目录"
 		});
+	parser.addEntry("exit", ArgEntry{
+		(IRunnable*)&CmdExit(),
+		"退出shell"
+		});
 	while (true) {
 		string input;
+		cout << UserContext::GetCurPath() << "# ";
 		getline(cin, input);
 		int code = parser.run(input);
 		if (code != 0) {

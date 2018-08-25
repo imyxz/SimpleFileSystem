@@ -36,4 +36,5 @@ public:
 	}
 	static File CreateFile();
 	static Dir CreateDir(ID_T parent_inode_id, const string & name);
+
 };
