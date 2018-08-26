@@ -32,17 +32,13 @@ string ContentLoader::GetContentPath(ID_T content_id) {
 	sstream << kContentDir << "/" << content_id << ".content";
 	return sstream.str();
 }
-ifstream & ContentLoader::GetContentIfStream(ID_T content_id) {
+void ContentLoader::GetContentIfStream(ID_T content_id, ifstream & in) {
 	string filename = ContentLoader::GetContentPath(content_id);
-	ifstream * in = new ifstream();
-	in->open(filename, ios::in | ios::binary);
-	return *in;
+	in.open(filename, ios::in | ios::binary);
 }
-ofstream & ContentLoader::GetContentOfStream(ID_T content_id) {
+void ContentLoader::GetContentOfStream(ID_T content_id, ofstream & out) {
 	string filename = ContentLoader::GetContentPath(content_id);
-	ofstream * out = new ofstream();
-	out->open(filename, ios::out | ios::binary | ios::app);
-	return *out;
+	out.open(filename, ios::out | ios::binary | ios::app);
 }
 void ContentLoader::CreateContentFile(ID_T content_id) {
 	string filename = ContentLoader::GetContentPath(content_id);

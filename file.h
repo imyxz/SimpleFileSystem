@@ -20,10 +20,10 @@ public:
 			throw new exception("this inode is not type file.");
 		}
 	}
-	ifstream & getIfStream() {
-		return ContentLoader::GetContentIfStream(inode->content_id);
+	void getIfStream(ifstream & in) {
+		return ContentLoader::GetContentIfStream(inode->content_id, in);
 	}
-	ofstream & getOfStream() {
-		return ContentLoader::GetContentOfStream(inode->content_id);
+	void getOfStream(ofstream & out) {
+		return ContentLoader::GetContentOfStream(inode->content_id, out);
 	}
 };

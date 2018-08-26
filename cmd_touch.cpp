@@ -25,9 +25,16 @@ public:
 				return -1;
 			}
 			Dir parentDir = Dir(*inode);
-			File file = INodeHelper::CreateFile();
-			parentDir.addEntry(file, filename);
-			cout << "create file success! inode id:" << file.GetID() << endl;
+			ID_T cur_id = parentDir.findEntry(filename);
+			if (cur_id != 0) {
+				cout << "access file success! inode id:" << cur_id << endl;
+			}
+			else {
+				File file = INodeHelper::CreateFile();
+				parentDir.addEntry(file, filename);
+				cout << "create file success! inode id:" << file.GetID() << endl;
+			}
+
 			return 0;
 		}
 		else {

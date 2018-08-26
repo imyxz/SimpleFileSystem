@@ -16,7 +16,7 @@ public:
 class ContentLoader {
 public:
 	static string GetContentPath(ID_T content_id);
-	static ifstream & GetContentIfStream(ID_T content_id);
-	static ofstream & GetContentOfStream(ID_T content_id);
+	static void GetContentIfStream(ID_T content_id, ifstream & in);
+	static void GetContentOfStream(ID_T content_id, ofstream & out);
 	static void CreateContentFile(ID_T content_id);
 };

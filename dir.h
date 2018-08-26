@@ -30,7 +30,8 @@ public:
 	}**/
 	vector<DirectoryEntry> getEntries() const {
 		vector<DirectoryEntry> ret;
-		ifstream & in = ContentLoader::GetContentIfStream(inode->content_id);
+		ifstream in;
+		ContentLoader::GetContentIfStream(inode->content_id, in);
 		in.seekg(0, in.end);
 		auto length = in.tellg();
 		in.seekg(0, in.beg);
@@ -48,7 +49,8 @@ public:
 	void addEntry(INode & inode_entry, const string & name) {
 		//find deleted entry
 		int add_position = -1;
-		ifstream & in = ContentLoader::GetContentIfStream(inode->content_id);
+		ifstream in;
+		ContentLoader::GetContentIfStream(inode->content_id, in);
 		in.seekg(0, in.end);
 		auto length = in.tellg();
 		in.seekg(0, in.beg);
@@ -65,7 +67,8 @@ public:
 			add_position = length;
 		}
 		in.close();
-		ofstream & out = ContentLoader::GetContentOfStream(inode->content_id);
+		ofstream out;
+		ContentLoader::GetContentOfStream(inode->content_id,out);
 		DirectoryEntry directory_entry;
 		directory_entry.inode_id = inode_entry.GetID();
 		directory_entry.is_used = true;
@@ -100,7 +103,8 @@ public:
 		return 0;
 	}
 	void deleteEntry(INode & inode_entry) {
-		ifstream & in = ContentLoader::GetContentIfStream(inode->content_id);
+		ifstream in;
+		ContentLoader::GetContentIfStream(inode->content_id,in);
 		in.seekg(0, in.end);
 		auto length = in.tellg();
 		in.seekg(0, in.beg);

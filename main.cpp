@@ -4,6 +4,7 @@
 #include "cmd_cd.cpp"
 #include "cmd_exit.cpp"
 #include "cmd_touch.cpp"
+#include "cmd_read.cpp"
 #include "arg_parser.h"
 #include "user_context.h"
 #include <iostream>
@@ -43,6 +44,10 @@ int main(int argc, char ** argv) {
 	parser.addEntry("touch", ArgEntry{
 		(IRunnable*)&CmdTouch(),
 		"改变文件访问时间，文件不存在时则创建"
+		});
+	parser.addEntry("read", ArgEntry{
+		(IRunnable*)&CmdRead(),
+		"读入文件内容"
 		});
 	while (true) {
 		string input;
