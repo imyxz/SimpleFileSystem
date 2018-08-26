@@ -43,6 +43,7 @@
     <ClCompile Include="cmd_mkdir.cpp" />
     <ClCompile Include="cmd_read.cpp" />
     <ClCompile Include="cmd_touch.cpp" />
+    <ClCompile Include="cmd_write.cpp" />
     <ClCompile Include="inode.cpp" />
     <ClCompile Include="inode_cache.cpp" />
     <ClCompile Include="inode_helper.cpp" />

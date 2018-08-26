@@ -4,7 +4,7 @@
 #include "user_context.h"
 #include <iostream>
 using namespace std;
-class CmdRead :public IRunnable {
+class CmdWrite :public IRunnable {
 public:
 	int run(int argc, string* argv) override {
 		if (argc >= 1) {
@@ -22,17 +22,20 @@ public:
 				return -1;
 			}
 			File file = File(*inode);
-			ifstream in;
-			file.getIfStream(in);
+			ofstream out;
+			file.getOfStream(out);
 			const int buffer_size = 4096;
 			char * buffer = new char[buffer_size + 1];
-			while (in.good()) {
-				in.get(buffer, buffer_size,'\0');
+			do {
+				cin.get(buffer, buffer_size, '\0');
 				buffer[buffer_size] = '\0';
-				cout << buffer;
-			}
+				out << buffer;
+			} while (cin.good());
+			//»Ö¸´×´Ì¬
+			cin.ignore();
+			cin.clear();
 			delete[] buffer;
-			in.close();
+			out.close();
 
 			return 0;
 		}

@@ -5,6 +5,7 @@
 #include "cmd_exit.cpp"
 #include "cmd_touch.cpp"
 #include "cmd_read.cpp"
+#include "cmd_write.cpp"
 #include "arg_parser.h"
 #include "user_context.h"
 #include <iostream>
@@ -49,15 +50,18 @@ int main(int argc, char ** argv) {
 		(IRunnable*)&CmdRead(),
 		"读入文件内容"
 		});
-	while (true) {
-		string input;
-		cout << UserContext::GetCurPath() << "# ";
-		getline(cin, input);
+	parser.addEntry("write", ArgEntry{
+		(IRunnable*)&CmdWrite(),
+		"写入文件内容"
+		});
+	string input;
+	cout << UserContext::GetCurPath() << "# ";
+	while (getline(cin, input)) {
 		int code = parser.run(input);
 		if (code != 0) {
 			cout << code << endl;
 		}
-		
+		cout << UserContext::GetCurPath() << "# ";
 	}
 	
 	//system("pause");
