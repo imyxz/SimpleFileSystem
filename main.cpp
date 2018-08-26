@@ -3,6 +3,7 @@
 #include "cmd_mkdir.cpp"
 #include "cmd_cd.cpp"
 #include "cmd_exit.cpp"
+#include "cmd_touch.cpp"
 #include "arg_parser.h"
 #include "user_context.h"
 #include <iostream>
@@ -38,6 +39,10 @@ int main(int argc, char ** argv) {
 	parser.addEntry("exit", ArgEntry{
 		(IRunnable*)&CmdExit(),
 		"退出shell"
+		});
+	parser.addEntry("touch", ArgEntry{
+		(IRunnable*)&CmdTouch(),
+		"改变文件访问时间，文件不存在时则创建"
 		});
 	while (true) {
 		string input;

@@ -20,6 +20,10 @@ public:
 		else {
 			inode = new Dir(UserContext::cur_dir_id);
 		}
+		if (inode->GetType() != INodeType::kDIR) {
+			cerr << argv[0] << "is not a dir!";
+			return -1;
+		}
 		Dir cur = Dir(*inode);
 		auto entries = cur.getEntries();
 		for (auto entry : entries) {

@@ -15,14 +15,16 @@ public:
 				cerr << filepath << "not exist!";
 				return -1;
 			}
-			else {
-				string name = "";
-				if (route.size() > 0) {
-					name = route.back();
-				}
-				UserContext::PushDir(Dir(*inode), name);
-				return 0;
+			if (inode->GetType() != INodeType::kDIR) {
+				cerr << filepath << "is not a dir!";
+				return -1;
 			}
+			string name = "";
+			if (route.size() > 0) {
+				name = route.back();
+			}
+			UserContext::PushDir(Dir(*inode), name);
+			return 0;
 		}
 		else {
 			return -1;

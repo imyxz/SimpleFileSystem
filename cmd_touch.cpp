@@ -5,18 +5,33 @@
 class CmdTouch :public IRunnable {
 public:
 	int run(int argc, string* argv) override {
-		string filepath = argv[0];
-		Dir curDir = Dir(UserContext::cur_dir_id);
-		PathRoute route;
-		PathHelper::GetPathRoute(filepath, route);
-		INode * inode = PathHelper::GetINodeFromPath(curDir, route);
-		if (inode == 0) {
-			cerr << filepath << "not exist!";
-			return -1;
+		if (argc >= 1) {
+			string filepath = argv[0];
+			Dir curDir = Dir(UserContext::cur_dir_id);
+			PathRoute route;
+			PathHelper::GetPathRoute(filepath, route);
+			if (route.size() == 0) {
+				return -1;
+			}
+			string filename = route.back();
+			route.pop_back();
+			INode * inode = PathHelper::GetINodeFromPath(curDir, route);
+			if (inode == 0) {
+				cerr << "path is not exist!" << endl;
+				return -1;
+			}
+			if (inode->GetType() != INodeType::kDIR) {
+				cerr << "path is not a dir!";
+				return -1;
+			}
+			Dir parentDir = Dir(*inode);
+			File file = INodeHelper::CreateFile();
+			parentDir.addEntry(file, filename);
+			cout << "create file success! inode id:" << file.GetID() << endl;
+			return 0;
 		}
 		else {
-			UserContext::cur_dir_id = inode->GetID();
-			return 0;
+			return -1;
 		}
 	}
 };
