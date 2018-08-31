@@ -4,6 +4,8 @@
 #include<vector>
 #include<string>
 #include<cstring>
+#include<sstream>
+using namespace std;
 const int ReadBit = 2;
 const int WriteBit = 1;
 const int ExecBit = 0;
@@ -38,9 +40,54 @@ public:
 	INodeType GetType() const{
 		return inode->type;
 	}
+	string GetOwnerPermission() const {
+		stringstream ss;
+		if ((inode->owner_permission >> ReadBit) & 1) {
+			ss << "R";
+		}
+		else {
+			ss << "-";
+		}
+		if ((inode->owner_permission >> WriteBit) & 1) {
+			ss << "W";
+		}
+		else {
+			ss << "-";
+		}
+		if ((inode->owner_permission >> ExecBit) & 1) {
+			ss << "X";
+		}
+		else {
+			ss << "-";
+		}
+		return ss.str();
+	}
+	string GetGlobalPermission() const {
+		stringstream ss;
+		if ((inode->global_permission >> ReadBit) & 1) {
+			ss << "R";
+		}
+		else {
+			ss << "-";
+		}
+		if ((inode->global_permission >> WriteBit) & 1) {
+			ss << "W";
+		}
+		else {
+			ss << "-";
+		}
+		if ((inode->global_permission >> ExecBit) & 1) {
+			ss << "X";
+		}
+		else {
+			ss << "-";
+		}
+		return ss.str();
+	}
 	BOOL_T HasPermissionRead() const;
 	BOOL_T HasPermissionWrite() const;
 	BOOL_T HasPermissionExec() const;
+	BOOL_T IsOwner() const;
 	BOOL_T CheckPermissionBit(ID_T login_user_id, int bit) const;
 	void onRefer() {
 		inode->ref_cnt++;

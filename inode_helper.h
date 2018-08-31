@@ -19,7 +19,10 @@ public:
 	static void Init() {
 		if (inode_map.getSlot(kROOT_ID) == false) {
 			content_map.useSlot(kUSER_CONTENT_ID);
-			INodeHelper::CreateDir(0, "/");
+			ContentLoader::EmptyContentFile(kUSER_CONTENT_ID);
+			Dir root = INodeHelper::CreateDir(0, "/");
+			root.GetINode()->owner_id = kROOT_ID;
+			root.GetINode()->global_permission = 7;
 			UserHelper::AddUser("root");
 		}
 		UserContext::LoginAs("root");

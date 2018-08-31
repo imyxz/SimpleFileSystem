@@ -12,7 +12,7 @@ public:
 			PathHelper::GetPathRoute(filepath, route);
 			INode * inode = PathHelper::MakeDir(curDir, route);
 			if (inode == 0) {
-				cerr << "create dir faild!"<<endl;
+				cerr << "create dir faild! May be do not has permission"<<endl;
 				return -1;
 			}
 			else {

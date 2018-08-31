@@ -41,6 +41,7 @@
   <ItemGroup>
     <ClCompile Include="cmd_adduser.cpp" />
     <ClCompile Include="cmd_cd.cpp" />
+    <ClCompile Include="cmd_chmod.cpp" />
     <ClCompile Include="cmd_exit.cpp" />
     <ClCompile Include="cmd_ls.cpp" />
     <ClCompile Include="cmd_mkdir.cpp" />

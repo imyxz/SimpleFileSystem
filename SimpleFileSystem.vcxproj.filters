@@ -128,5 +128,8 @@
     <ClCompile Include="cmd_users.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="cmd_chmod.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

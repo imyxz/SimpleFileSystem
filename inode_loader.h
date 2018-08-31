@@ -19,4 +19,5 @@ public:
 	static void GetContentIfStream(ID_T content_id, ifstream & in);
 	static void GetContentOfStream(ID_T content_id, ofstream & out);
 	static void CreateContentFile(ID_T content_id);
+	static void EmptyContentFile(ID_T content_id);
 };

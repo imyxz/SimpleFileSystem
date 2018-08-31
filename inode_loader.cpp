@@ -1,4 +1,5 @@
 #include"inode_loader.h"
+#include<cstdio>
 string INodeLoader::GetINodePath(ID_T inode_id) {
 	stringstream sstream;
 	sstream << kINodeDir << "/" << inode_id << ".inode";
@@ -45,4 +46,9 @@ void ContentLoader::CreateContentFile(ID_T content_id) {
 	ofstream out;
 	out.open(filename, ios::out | ios::binary | ios::trunc);
 	out.close();
+}
+void ContentLoader::EmptyContentFile(ID_T content_id) {
+	string filename = ContentLoader::GetContentPath(content_id);
+	remove(filename.c_str());
+	ContentLoader::CreateContentFile(content_id);
 }

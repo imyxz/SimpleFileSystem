@@ -8,6 +8,9 @@ INode * PathHelper::GetINodeFromPath(const Dir & curDir, const PathRoute & route
 	if (route.startFromRoot) {
 		cur_dir = INodeHelper::GetRootDir();
 	}
+	if (!(cur_dir.HasPermissionRead() && cur_dir.HasPermissionExec())) {
+		return NULL;
+	}
 	for (size_t i = 0; i + 1 < route.size();i++) {
 		const string & name = route[i];
 		ID_T sub_dir_id = cur_dir.findEntry(name);
@@ -15,6 +18,9 @@ INode * PathHelper::GetINodeFromPath(const Dir & curDir, const PathRoute & route
 			return NULL;
 		}
 		cur_dir = Dir(sub_dir_id);
+		if (!(cur_dir.HasPermissionRead() && cur_dir.HasPermissionExec())) {
+			return NULL;
+		}
 	}
 	if (route.size() > 0) {
 		string last_file_name = route.back();
@@ -23,6 +29,9 @@ INode * PathHelper::GetINodeFromPath(const Dir & curDir, const PathRoute & route
 			return NULL;
 		}
 		INode inode = INode(ret_id);
+		if (!(inode.HasPermissionRead() && inode.HasPermissionExec())) {
+			return NULL;
+		}
 		if (inode.GetType() == INodeType::kFILE) {
 			return new File(inode);
 		}
@@ -41,23 +50,38 @@ INode * PathHelper::MakeDir(const Dir & curDir, const PathRoute & route) {
 	if (route.startFromRoot) {
 		cur_dir = INodeHelper::GetRootDir();
 	}
+	if (!(cur_dir.HasPermissionRead() && cur_dir.HasPermissionExec())) {
+		return NULL;
+	}
 	for (size_t i = 0; i + 1 < route.size(); i++) {
 		const string & name = route[i];
 		ID_T sub_dir_id = cur_dir.findEntry(name);
 		if (sub_dir_id == 0) {
+			if (!(cur_dir.HasPermissionWrite())) {
+				return NULL;
+			}
 			Dir newDir = INodeHelper::CreateDir(cur_dir.GetID(), name);
 			sub_dir_id = newDir.GetID();
 		}
 		cur_dir = Dir(sub_dir_id);
+		if (!(cur_dir.HasPermissionRead() && cur_dir.HasPermissionExec())) {
+			return NULL;
+		}
 	}
 	if (route.size() > 0) {
 		string last_file_name = route.back();
 		ID_T ret_id = cur_dir.findEntry(last_file_name);
 		if (ret_id == 0) {
+			if (!(cur_dir.HasPermissionWrite())) {
+				return NULL;
+			}
 			Dir newDir = INodeHelper::CreateDir(cur_dir.GetID(), last_file_name);
 			return new Dir(newDir);
 		}
 		INode inode = INode(ret_id);
+		if (!(inode.HasPermissionWrite())) {
+			return NULL;
+		}
 		if (inode.GetType() == INodeType::kFILE) {
 			return NULL;
 		}

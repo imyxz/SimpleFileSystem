@@ -9,6 +9,7 @@
 #include "cmd_su.cpp"
 #include "cmd_adduser.cpp"
 #include "cmd_users.cpp"
+#include "cmd_chmod.cpp"
 #include "arg_parser.h"
 #include "user_context.h"
 #include <iostream>
@@ -68,6 +69,10 @@ int main(int argc, char ** argv) {
 	parser.addEntry("users", ArgEntry{
 		(IRunnable*)&CmdUsers(),
 		"查看用户列表"
+		});
+	parser.addEntry("chmod", ArgEntry{
+		(IRunnable*)&CmdChmod(),
+		"更改文件权限"
 		});
 	string input;
 	cout << UserContext::user_name<<":"<< UserContext::GetCurPath() << "# ";

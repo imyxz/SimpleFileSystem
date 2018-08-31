@@ -34,6 +34,15 @@ public:
 		}
 		return 0;
 	}
+	static string FindUserByID(ID_T id) {
+		vector<UserEntry> entries = GetUserList();
+		for (UserEntry entry : entries) {
+			if (entry.user_id == id) {
+				return entry.name;
+			}
+		}
+		return "";
+	}
 	static ID_T AddUser(string name) {
 		ofstream out;
 		ContentLoader::GetContentOfStream(kUSER_CONTENT_ID, out);

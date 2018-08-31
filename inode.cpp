@@ -28,3 +28,6 @@ BOOL_T INode::CheckPermissionBit(ID_T login_user_id, int bit) const {
 	}
 	return false;
 }
+BOOL_T INode::IsOwner()const {
+	return UserContext::user_id == inode->owner_id || UserContext::user_id == kROOT_ID;
+}
