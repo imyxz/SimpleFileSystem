@@ -5,6 +5,8 @@
 #include "inode.h"
 #include "inode_loader.h"
 #include "inode_cache.h"
+#include "user_helper.h"
+#include "user_context.h"
 #include <ctime>
 class INodeHelper {
 private:
@@ -16,8 +18,11 @@ public:
 	static const ID_T kROOT_ID = 1;
 	static void Init() {
 		if (inode_map.getSlot(kROOT_ID) == false) {
+			content_map.useSlot(kUSER_CONTENT_ID);
 			INodeHelper::CreateDir(0, "/");
+			UserHelper::AddUser("root");
 		}
+		UserContext::LoginAs("root");
 	}
 	static Dir GetRootDir() {
 		return Dir(kROOT_ID);

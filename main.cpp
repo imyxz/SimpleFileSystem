@@ -55,13 +55,13 @@ int main(int argc, char ** argv) {
 		"写入文件内容"
 		});
 	string input;
-	cout << UserContext::GetCurPath() << "# ";
+	cout << UserContext::user_name<<":"<< UserContext::GetCurPath() << "# ";
 	while (getline(cin, input)) {
 		int code = parser.run(input);
 		if (code != 0) {
 			cout << code << endl;
 		}
-		cout << UserContext::GetCurPath() << "# ";
+		cout << UserContext::user_name << ":" << UserContext::GetCurPath() << "# ";
 	}
 	
 	//system("pause");

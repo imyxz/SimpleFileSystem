@@ -10,3 +10,6 @@ const string kPATH_DELIMITER = "/";
 const string kINodeDir = "inode";
 const string kContentDir = "content";
 const SIZE_T kDIRECTORY_ENTRY_NAME_LENGTH = 251;
+const SIZE_T kUSER_ENTRY_NAME_LENGTH = 251;
+const ID_T kUSER_CONTENT_ID = 1;
+const ID_T kROOT_ID = 1;

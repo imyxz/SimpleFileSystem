@@ -35,6 +35,8 @@
     <ClInclude Include="inode_type.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="used_map.h" />
+    <ClInclude Include="user_entry.h" />
+    <ClInclude Include="user_helper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cmd_cd.cpp" />

@@ -63,6 +63,12 @@
     <ClInclude Include="path_trace.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="user_helper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="user_entry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="inode.cpp">
