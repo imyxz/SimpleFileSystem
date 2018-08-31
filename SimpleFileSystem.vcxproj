@@ -39,12 +39,15 @@
     <ClInclude Include="user_helper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cmd_adduser.cpp" />
     <ClCompile Include="cmd_cd.cpp" />
     <ClCompile Include="cmd_exit.cpp" />
     <ClCompile Include="cmd_ls.cpp" />
     <ClCompile Include="cmd_mkdir.cpp" />
     <ClCompile Include="cmd_read.cpp" />
+    <ClCompile Include="cmd_su.cpp" />
     <ClCompile Include="cmd_touch.cpp" />
+    <ClCompile Include="cmd_users.cpp" />
     <ClCompile Include="cmd_write.cpp" />
     <ClCompile Include="inode.cpp" />
     <ClCompile Include="inode_cache.cpp" />

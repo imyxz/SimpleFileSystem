@@ -119,5 +119,14 @@
     <ClCompile Include="cmd_write.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="cmd_su.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd_adduser.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd_users.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

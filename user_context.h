@@ -23,5 +23,6 @@ public:
 		}
 		user_id = target;
 		user_name = name;
+		return target;
 	}
 };

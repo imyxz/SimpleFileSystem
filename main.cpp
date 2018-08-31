@@ -6,6 +6,9 @@
 #include "cmd_touch.cpp"
 #include "cmd_read.cpp"
 #include "cmd_write.cpp"
+#include "cmd_su.cpp"
+#include "cmd_adduser.cpp"
+#include "cmd_users.cpp"
 #include "arg_parser.h"
 #include "user_context.h"
 #include <iostream>
@@ -53,6 +56,18 @@ int main(int argc, char ** argv) {
 	parser.addEntry("write", ArgEntry{
 		(IRunnable*)&CmdWrite(),
 		"写入文件内容"
+		});
+	parser.addEntry("su", ArgEntry{
+		(IRunnable*)&CmdSu(),
+		"切换用户"
+		});
+	parser.addEntry("adduser", ArgEntry{
+		(IRunnable*)&CmdAdduser(),
+		"新建用户"
+		});
+	parser.addEntry("users", ArgEntry{
+		(IRunnable*)&CmdUsers(),
+		"查看用户列表"
 		});
 	string input;
 	cout << UserContext::user_name<<":"<< UserContext::GetCurPath() << "# ";

@@ -4,6 +4,9 @@
 #include<vector>
 #include<string>
 #include<cstring>
+const int ReadBit = 2;
+const int WriteBit = 1;
+const int ExecBit = 0;
 struct INodeStruct {
 	ID_T id;
 	SIZE_T size;
@@ -35,6 +38,10 @@ public:
 	INodeType GetType() const{
 		return inode->type;
 	}
+	BOOL_T HasPermissionRead() const;
+	BOOL_T HasPermissionWrite() const;
+	BOOL_T HasPermissionExec() const;
+	BOOL_T CheckPermissionBit(ID_T login_user_id, int bit) const;
 	void onRefer() {
 		inode->ref_cnt++;
 	}
