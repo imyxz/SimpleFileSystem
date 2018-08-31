@@ -12,7 +12,6 @@ protected:
 	string filename;
 	bool * map_array;
 	void loadFromFile();
-	void saveToFile();
 public:
 	UsedMap(const SIZE_T max_slots, const string & filename);
 	ID_T findEmptySlot() const;
@@ -25,6 +24,7 @@ public:
 	bool getSlot(ID_T id) {
 		return map_array[id];
 	}
+	void saveToFile();
 	~UsedMap();
 };
 class INodeMap:public UsedMap {

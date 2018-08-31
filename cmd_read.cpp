@@ -18,7 +18,11 @@ public:
 				return -1;
 			}
 			if (inode->GetType() != INodeType::kFILE) {
-				cerr << "path is not a file!";
+				cerr << "path is not a file!" << endl;
+				return -1;
+			}
+			if (!inode->HasPermissionRead()) {
+				cerr << "permission deny" << endl;
 				return -1;
 			}
 			File file = File(*inode);
@@ -33,7 +37,7 @@ public:
 			}
 			delete[] buffer;
 			in.close();
-
+			file.UpdateATime();
 			return 0;
 		}
 		else {

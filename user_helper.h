@@ -14,7 +14,7 @@ public:
 		in.seekg(0, in.end);
 		auto length = in.tellg();
 		in.seekg(0, in.beg);
-		int item_cnt = length / sizeof(UserEntry);
+		auto item_cnt = length / sizeof(UserEntry);
 		for (int i = 0; i < item_cnt; i++) {
 			UserEntry entry;
 			in.read((char*)&entry, sizeof(UserEntry));

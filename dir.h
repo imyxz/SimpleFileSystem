@@ -35,7 +35,7 @@ public:
 		in.seekg(0, in.end);
 		auto length = in.tellg();
 		in.seekg(0, in.beg);
-		int item_cnt = length / sizeof(DirectoryEntry);
+		auto item_cnt = length / sizeof(DirectoryEntry);
 		for (int i = 0; i < item_cnt; i++) {
 			DirectoryEntry entry;
 			in.read((char*)&entry, sizeof(DirectoryEntry));
@@ -54,7 +54,7 @@ public:
 		in.seekg(0, in.end);
 		auto length = in.tellg();
 		in.seekg(0, in.beg);
-		int item_cnt = length / sizeof(DirectoryEntry);
+		auto item_cnt = length / sizeof(DirectoryEntry);
 		for (int i = 0; i < item_cnt; i++) {
 			DirectoryEntry entry;
 			in.read((char*)&entry, sizeof(DirectoryEntry));
@@ -108,7 +108,7 @@ public:
 		in.seekg(0, in.end);
 		auto length = in.tellg();
 		in.seekg(0, in.beg);
-		int item_cnt = length / sizeof(DirectoryEntry);
+		auto item_cnt = length / sizeof(DirectoryEntry);
 		for (int i = 0; i < item_cnt; i++) {
 			DirectoryEntry entry;
 			in.read((char*)&entry, sizeof(DirectoryEntry));

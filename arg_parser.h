@@ -50,7 +50,7 @@ public:
 	}
 	int run(string args){
 		int last_pos = 0;
-		int cur_pos = string::npos;
+		size_t cur_pos = string::npos;
 		int cnt = 0;
 		args = trim(args);
 		while ((cur_pos = args.find(' ',last_pos)) != string::npos) {

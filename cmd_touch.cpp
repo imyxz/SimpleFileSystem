@@ -25,8 +25,14 @@ public:
 				return -1;
 			}
 			Dir parentDir = Dir(*inode);
+			if (!parentDir.HasPermissionWrite()) {
+				cerr << "permission deny" << endl;
+				return -1;
+			}
 			ID_T cur_id = parentDir.findEntry(filename);
 			if (cur_id != 0) {
+				INode inode = INode(cur_id);
+				inode.UpdateATime();
 				cout << "access file success! inode id:" << cur_id << endl;
 			}
 			else {

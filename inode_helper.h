@@ -44,5 +44,9 @@ public:
 	}
 	static File CreateFile();
 	static Dir CreateDir(ID_T parent_inode_id, const string & name);
-
+	static void Save() {
+		inode_map.saveToFile();
+		content_map.saveToFile();
+		inode_cache.SaveAll();
+	}
 };

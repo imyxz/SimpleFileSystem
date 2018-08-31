@@ -5,6 +5,6 @@
 class CmdExit :public IRunnable {
 public:
 	int run(int argc, string* argv) override {
-		exit(0);
+		return -2;
 	}
 };

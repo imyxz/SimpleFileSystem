@@ -10,5 +10,6 @@ public:
 	INodeCache();
 	INodeStruct * GetINode(ID_T inode_id);
 	INodeStruct * SetINode(const INodeStruct & target);
+	void SaveAll();
 	~INodeCache();
 };

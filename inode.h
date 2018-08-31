@@ -1,10 +1,14 @@
+#define _CRT_SECURE_NO_WARNINGS
 #pragma once
+
 #include "types.h"
 #include "inode_type.h"
 #include<vector>
 #include<string>
 #include<cstring>
 #include<sstream>
+#include<iomanip>
+
 using namespace std;
 const int ReadBit = 2;
 const int WriteBit = 1;
@@ -18,9 +22,9 @@ struct INodeStruct {
 	ID_T owner_id;
 	PERMISSION_T owner_permission;
 	PERMISSION_T global_permission;
-	TIME_T c_time;
-	TIME_T m_time;
-	TIME_T a_time;
+	time_t c_time;
+	time_t m_time;
+	time_t a_time;
 };
 class INode {
 protected:
@@ -39,6 +43,27 @@ public:
 	}
 	INodeType GetType() const{
 		return inode->type;
+	}
+	void UpdateATime() const {
+		inode->a_time = time(0);
+	}
+	void UpdateMTime() const {
+		inode->m_time = time(0);
+	}
+	string GetATime() const {
+		return TimeToStr(inode->a_time);
+	}
+	string GetMTime() const {
+		return TimeToStr(inode->m_time);
+	}
+	string GetCTime() const {
+		return TimeToStr(inode->c_time);
+	}
+	string TimeToStr(time_t _time) const {
+		stringstream ss;
+		tm * t = gmtime(&_time);
+		ss << std::put_time(t, "%c");
+		return ss.str();
 	}
 	string GetOwnerPermission() const {
 		stringstream ss;

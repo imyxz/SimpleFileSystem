@@ -26,13 +26,15 @@ public:
 		}
 		Dir cur = Dir(*inode);
 		auto entries = cur.getEntries();
-		cout << "inode id\tpermission\towner\tname" << endl;
+		cout << "id\tpermission\towner\tname\tmtime\tatime" << endl;
 		for (auto entry : entries) {
 			INode inode = INode(entry.inode_id);
 			cout << entry.inode_id <<"\t"
 				<<inode.GetOwnerPermission() << inode.GetGlobalPermission()<<"\t"
 				<<UserHelper::FindUserByID(inode.GetINode()->owner_id)<<"\t" 
 				<<entry.name << "\t" 
+				<< inode.GetMTime() << "\t"
+				<< inode.GetATime() << "\t"
 				 << endl;
 		}
 		delete inode;

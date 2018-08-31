@@ -29,9 +29,9 @@ INode * PathHelper::GetINodeFromPath(const Dir & curDir, const PathRoute & route
 			return NULL;
 		}
 		INode inode = INode(ret_id);
-		if (!(inode.HasPermissionRead() && inode.HasPermissionExec())) {
-			return NULL;
-		}
+		//if (!(inode.HasPermissionRead() && inode.HasPermissionExec())) {
+		//	return NULL;
+		//}
 		if (inode.GetType() == INodeType::kFILE) {
 			return new File(inode);
 		}

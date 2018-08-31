@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "inode_helper.h"
 #include "cmd_ls.cpp"
 #include "cmd_mkdir.cpp"
@@ -83,11 +84,15 @@ int main(int argc, char ** argv) {
 	cout << UserContext::user_name<<":"<< UserContext::GetCurPath() << "# ";
 	while (getline(cin, input)) {
 		int code = parser.run(input);
+		if (code == -2) {
+			break;
+		}
 		if (code != 0) {
 			cout << code << endl;
 		}
 		cout << UserContext::user_name << ":" << UserContext::GetCurPath() << "# ";
 	}
+	INodeHelper::Save();
 	
 	//system("pause");
 }

@@ -21,6 +21,10 @@ public:
 				cerr << "path is not a file!";
 				return -1;
 			}
+			if (!inode->HasPermissionRead()) {
+				cerr << "permission deny" << endl;
+				return -1;
+			}
 			File file = File(*inode);
 			ofstream out;
 			file.getOfStream(out);
@@ -36,7 +40,7 @@ public:
 			cin.clear();
 			delete[] buffer;
 			out.close();
-
+			file.UpdateMTime();
 			return 0;
 		}
 		else {

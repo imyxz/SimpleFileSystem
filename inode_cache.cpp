@@ -22,9 +22,16 @@ INodeStruct * INodeCache::SetINode(const INodeStruct & target) {
 INodeCache::~INodeCache() {
 	for (ID_T i = 0; i < kINODE_MAXN; i++) {
 		if(inodes[i]!=NULL){
-			INodeLoader::SaveINode(*inodes[i]);
+			//INodeLoader::SaveINode(*inodes[i]);
 			delete inodes[i];
 		}
 	}
 	delete [] inodes;
+}
+void INodeCache::SaveAll() {
+	for (ID_T i = 0; i < kINODE_MAXN; i++) {
+		if (inodes[i] != NULL) {
+			INodeLoader::SaveINode(*inodes[i]);
+		}
+	}
 }
