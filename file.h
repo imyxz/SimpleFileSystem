@@ -9,7 +9,8 @@ class File :public INode {
 public:
 	File(ID_T inode_id) :INode(inode_id) {
 		if (inode->type != INodeType::kFILE) {
-			throw new exception("this inode is not type file.");
+			exit(-1);
+			//throw new exception("this inode is not type file.");
 		}
 	}
 	File(INodeStruct * inode_struct) :INode(inode_struct) {
@@ -17,7 +18,8 @@ public:
 	}
 	File(INode & inode) :INode(inode) {
 		if (inode.GetINode()->type != INodeType::kFILE) {
-			throw new exception("this inode is not type file.");
+			exit(-1);
+			//throw new exception("this inode is not type file.");
 		}
 	}
 	void getIfStream(ifstream & in) {

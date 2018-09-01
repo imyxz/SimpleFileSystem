@@ -7,6 +7,7 @@
 #include "inode_cache.h"
 #include "user_helper.h"
 #include "user_context.h"
+#include "consts.h"
 #include <ctime>
 class INodeHelper {
 private:
@@ -15,7 +16,6 @@ public:
 	static INodeMap inode_map;
 	static ContentMap content_map;
 	static INodeCache inode_cache;
-	static const ID_T kROOT_ID = 1;
 	static void Init() {
 		if (inode_map.getSlot(kROOT_ID) == false) {
 			content_map.useSlot(kUSER_CONTENT_ID);

@@ -10,7 +10,8 @@ class Dir :public INode {
 public:
 	Dir(const ID_T & inode_id) :INode(inode_id) {
 		if (inode->type != INodeType::kDIR) {
-			throw new exception("this inode is not type dir.");
+			exit(-1);
+			//throw new exception("this inode is not type dir.");
 		}
 	}
 	Dir(INodeStruct * inode_struct) :INode(inode_struct) {
@@ -18,7 +19,8 @@ public:
 	}
 	Dir(INode & inode) :INode(inode) {
 		if (inode.GetINode()->type != INodeType::kDIR) {
-			throw new exception("this inode is not type dir.");
+			exit(-1);
+			//throw new exception("this inode is not type dir.");
 		}
 	}
 /**	Dir & operator =(INode& inode) {

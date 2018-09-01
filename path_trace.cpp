@@ -31,7 +31,8 @@ void PathTrace::push(const Dir & dir, const string & name)
 			return;
 		}
 	}
-	throw new exception("path trace faild.");
+	exit(-1);
+	//throw new exception("path trace faild.");
 }
 
 void PathTrace::format()

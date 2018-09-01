@@ -32,52 +32,64 @@ int main(int argc, char ** argv) {
 	INodeHelper::Init();
 	UserContext::cur_dir_id = 1;
 	ArgParser parser;
+	CmdAdduser adduser;
+	CmdCd cd;
+	CmdChmod chmod;
+	CmdChown chown;
+	CmdExit exit;
+	CmdLs ls;
+	CmdMkdir mkdir;
+	CmdRead read;
+	CmdSu su;
+	CmdTouch touch;
+	CmdUsers users;
+	CmdWrite write;
 	parser.addEntry("ls", ArgEntry{
-		(IRunnable*)&CmdLs(),
+		(IRunnable*)&ls,
 		"列出该目录下的文件"
 		});
 	parser.addEntry("mkdir", ArgEntry{
-		(IRunnable*)&CmdMkdir(),
+		(IRunnable*)&mkdir,
 		"创建目录（支持递归创建）"
 		});
 	parser.addEntry("cd", ArgEntry{
-		(IRunnable*)&CmdCd(),
+		(IRunnable*)&cd,
 		"改变当前工作目录"
 		});
 	parser.addEntry("exit", ArgEntry{
-		(IRunnable*)&CmdExit(),
+		(IRunnable*)&exit,
 		"退出shell"
 		});
 	parser.addEntry("touch", ArgEntry{
-		(IRunnable*)&CmdTouch(),
+		(IRunnable*)&touch,
 		"改变文件访问时间，文件不存在时则创建"
 		});
 	parser.addEntry("read", ArgEntry{
-		(IRunnable*)&CmdRead(),
+		(IRunnable*)&read,
 		"读入文件内容"
 		});
 	parser.addEntry("write", ArgEntry{
-		(IRunnable*)&CmdWrite(),
+		(IRunnable*)&write,
 		"写入文件内容"
 		});
 	parser.addEntry("su", ArgEntry{
-		(IRunnable*)&CmdSu(),
+		(IRunnable*)&su,
 		"切换用户"
 		});
 	parser.addEntry("adduser", ArgEntry{
-		(IRunnable*)&CmdAdduser(),
+		(IRunnable*)&adduser,
 		"新建用户"
 		});
 	parser.addEntry("users", ArgEntry{
-		(IRunnable*)&CmdUsers(),
+		(IRunnable*)&users,
 		"查看用户列表"
 		});
 	parser.addEntry("chmod", ArgEntry{
-		(IRunnable*)&CmdChmod(),
+		(IRunnable*)&chmod,
 		"更改文件权限"
 		});
 	parser.addEntry("chown", ArgEntry{
-		(IRunnable*)&CmdChown(),
+		(IRunnable*)&chown,
 		"更改文件所有者"
 		});
 	string input;
