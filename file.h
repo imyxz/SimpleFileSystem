@@ -1,4 +1,5 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include "types.h"
 #include "inode_type.h"
 #include "inode_loader.h"

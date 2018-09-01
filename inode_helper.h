@@ -1,4 +1,5 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include "used_map.h"
 #include "file.h"
 #include "dir.h"
