@@ -31,7 +31,20 @@ void PathTrace::push(const Dir & dir, const string & name)
 			return;
 		}
 	}
-	exit(-1);
+	//not found
+	traces.clear();
+	Dir curdir = dir;
+	string curname;
+	while (curdir.GetID() != kROOT_ID) {
+		Dir parent = Dir(curdir.findEntry(".."));
+		traces.push_front(PathTraceEntry{
+			parent.findEntryName(curdir.GetID()),
+			curdir
+			});
+		curdir = parent;
+	}
+	format();
+	return;
 	//throw new exception("path trace faild.");
 }
 
