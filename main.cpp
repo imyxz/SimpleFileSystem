@@ -12,6 +12,8 @@
 #include "cmd_users.cpp"
 #include "cmd_chmod.cpp"
 #include "cmd_chown.cpp"
+#include "cmd_delete.cpp"
+#include "cmd_rename.cpp"
 #include "arg_parser.h"
 #include "user_context.h"
 #include <iostream>
@@ -44,6 +46,8 @@ int main(int argc, char ** argv) {
 	CmdTouch touch;
 	CmdUsers users;
 	CmdWrite write;
+	CmdDelete _delete;
+	CmdRename rename;
 	parser.addEntry("ls", ArgEntry{
 		(IRunnable*)&ls,
 		"列出该目录下的文件"
@@ -91,6 +95,14 @@ int main(int argc, char ** argv) {
 	parser.addEntry("chown", ArgEntry{
 		(IRunnable*)&chown,
 		"更改文件所有者"
+		});
+	parser.addEntry("delete", ArgEntry{
+		(IRunnable*)&_delete,
+		"删除文件"
+		});
+	parser.addEntry("rename", ArgEntry{
+		(IRunnable*)&rename,
+		"重命名文件"
 		});
 	string input;
 	cout << UserContext::user_name<<":"<< UserContext::GetCurPath() << "# ";

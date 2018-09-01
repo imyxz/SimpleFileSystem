@@ -39,7 +39,7 @@ void ContentLoader::GetContentIfStream(ID_T content_id, ifstream & in) {
 }
 void ContentLoader::GetContentOfStream(ID_T content_id, ofstream & out) {
 	string filename = ContentLoader::GetContentPath(content_id);
-	out.open(filename, ios::out | ios::binary | ios::app);
+	out.open(filename, fstream::binary | fstream::out | fstream::in);
 }
 void ContentLoader::CreateContentFile(ID_T content_id) {
 	string filename = ContentLoader::GetContentPath(content_id);

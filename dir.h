@@ -6,6 +6,8 @@
 #include<vector>
 #include<string>
 #include<cstring>
+#include<iostream>
+using namespace std;
 class Dir :public INode {
 public:
 	Dir(const ID_T & inode_id) :INode(inode_id) {
@@ -106,7 +108,9 @@ public:
 	}
 	void deleteEntry(INode & inode_entry) {
 		ifstream in;
+		ofstream out;
 		ContentLoader::GetContentIfStream(inode->content_id,in);
+		ContentLoader::GetContentOfStream(inode->content_id, out);
 		in.seekg(0, in.end);
 		auto length = in.tellg();
 		in.seekg(0, in.beg);
@@ -115,11 +119,14 @@ public:
 			DirectoryEntry entry;
 			in.read((char*)&entry, sizeof(DirectoryEntry));
 			if (entry.is_used == true && entry.inode_id == inode_entry.GetID()) {
-				entry.is_used = false;
+				entry.is_used = false;				
+				out.seekp(sizeof(DirectoryEntry) * i);
+				out.write((char*)&entry, sizeof(DirectoryEntry));
 				break;
 			}
 		}
 		in.close();
+		out.close();
 		inode_entry.onUnrefer();
 	}
 };

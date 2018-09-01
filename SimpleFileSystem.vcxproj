@@ -43,10 +43,12 @@
     <ClCompile Include="cmd_cd.cpp" />
     <ClCompile Include="cmd_chmod.cpp" />
     <ClCompile Include="cmd_chown.cpp" />
+    <ClCompile Include="cmd_delete.cpp" />
     <ClCompile Include="cmd_exit.cpp" />
     <ClCompile Include="cmd_ls.cpp" />
     <ClCompile Include="cmd_mkdir.cpp" />
     <ClCompile Include="cmd_read.cpp" />
+    <ClCompile Include="cmd_rename.cpp" />
     <ClCompile Include="cmd_su.cpp" />
     <ClCompile Include="cmd_touch.cpp" />
     <ClCompile Include="cmd_users.cpp" />

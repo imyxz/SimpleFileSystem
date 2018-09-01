@@ -134,5 +134,11 @@
     <ClCompile Include="cmd_chown.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="cmd_delete.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd_rename.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
