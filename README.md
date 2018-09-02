@@ -18,3 +18,12 @@ touch   改变文件访问时间，文件不存在时则创建
 users   查看用户列表
 write   写入文件内容
 ```
+## 编码
+目前编码为UTF-8，可能在windows下会有乱码。如需在windows下测试只需将main.cpp的编码转化为GB2312即可
+## 编译
+### Linux:
+```
+cmake ./ && make
+```
+### Windows:
+使用visual studio编译即可
