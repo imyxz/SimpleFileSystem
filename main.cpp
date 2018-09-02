@@ -50,59 +50,59 @@ int main(int argc, char ** argv) {
 	CmdRename rename;
 	parser.addEntry("ls", ArgEntry{
 		(IRunnable*)&ls,
-		"ÁĞ³ö¸ÃÄ¿Â¼ÏÂµÄÎÄ¼ş"
+		"åˆ—å‡ºè¯¥ç›®å½•ä¸‹çš„æ–‡ä»¶"
 		});
 	parser.addEntry("mkdir", ArgEntry{
 		(IRunnable*)&mkdir,
-		"´´½¨Ä¿Â¼£¨Ö§³Öµİ¹é´´½¨£©"
+		"åˆ›å»ºç›®å½•ï¼ˆæ”¯æŒé€’å½’åˆ›å»ºï¼‰"
 		});
 	parser.addEntry("cd", ArgEntry{
 		(IRunnable*)&cd,
-		"¸Ä±äµ±Ç°¹¤×÷Ä¿Â¼"
+		"æ”¹å˜å½“å‰å·¥ä½œç›®å½•"
 		});
 	parser.addEntry("exit", ArgEntry{
 		(IRunnable*)&exit,
-		"ÍË³öshell"
+		"é€€å‡ºshell"
 		});
 	parser.addEntry("touch", ArgEntry{
 		(IRunnable*)&touch,
-		"¸Ä±äÎÄ¼ş·ÃÎÊÊ±¼ä£¬ÎÄ¼ş²»´æÔÚÊ±Ôò´´½¨"
+		"æ”¹å˜æ–‡ä»¶è®¿é—®æ—¶é—´ï¼Œæ–‡ä»¶ä¸å­˜åœ¨æ—¶åˆ™åˆ›å»º"
 		});
 	parser.addEntry("read", ArgEntry{
 		(IRunnable*)&read,
-		"¶ÁÈëÎÄ¼şÄÚÈİ"
+		"è¯»å…¥æ–‡ä»¶å†…å®¹"
 		});
 	parser.addEntry("write", ArgEntry{
 		(IRunnable*)&write,
-		"Ğ´ÈëÎÄ¼şÄÚÈİ"
+		"å†™å…¥æ–‡ä»¶å†…å®¹"
 		});
 	parser.addEntry("su", ArgEntry{
 		(IRunnable*)&su,
-		"ÇĞ»»ÓÃ»§"
+		"åˆ‡æ¢ç”¨æˆ·"
 		});
 	parser.addEntry("adduser", ArgEntry{
 		(IRunnable*)&adduser,
-		"ĞÂ½¨ÓÃ»§"
+		"æ–°å»ºç”¨æˆ·"
 		});
 	parser.addEntry("users", ArgEntry{
 		(IRunnable*)&users,
-		"²é¿´ÓÃ»§ÁĞ±í"
+		"æŸ¥çœ‹ç”¨æˆ·åˆ—è¡¨"
 		});
 	parser.addEntry("chmod", ArgEntry{
 		(IRunnable*)&chmod,
-		"¸ü¸ÄÎÄ¼şÈ¨ÏŞ"
+		"æ›´æ”¹æ–‡ä»¶æƒé™"
 		});
 	parser.addEntry("chown", ArgEntry{
 		(IRunnable*)&chown,
-		"¸ü¸ÄÎÄ¼şËùÓĞÕß"
+		"æ›´æ”¹æ–‡ä»¶æ‰€æœ‰è€…"
 		});
 	parser.addEntry("delete", ArgEntry{
 		(IRunnable*)&_delete,
-		"É¾³ıÎÄ¼ş"
+		"åˆ é™¤æ–‡ä»¶"
 		});
 	parser.addEntry("rename", ArgEntry{
 		(IRunnable*)&rename,
-		"ÖØÃüÃûÎÄ¼ş"
+		"é‡å‘½åæ–‡ä»¶"
 		});
 	string input;
 	cout << UserContext::user_name<<":"<< UserContext::GetCurPath() << "# ";
